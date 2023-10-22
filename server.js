@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 mongoose = require('mongoose');
+const colors = require('colors')
 
 require('dotenv').config();
 
@@ -16,11 +17,16 @@ app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 
 const uri = process.env.ATLAS_URI;
-mongoose.connect(uri);
-const connection = mongoose.connection;
-connection.once('open', () => {
-    console.log("MongoDB connection successful");
-})
+const connectDB = async () =>{
+    try {
+        const conn = await mongoose.connect(uri) 
+        console.log(`MongoDB connection successful ${conn.connection.host}`.cyan.underline)
+    }catch(error){
+        console.log(error);
+        process.exit(1);
+    }
+} 
+connectDB()
 
 app.use('/item', itemRoute)
 
