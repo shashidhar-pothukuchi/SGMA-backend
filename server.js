@@ -7,6 +7,7 @@ require('dotenv').config();
 
 //Routes
 const itemRoute = require('./routes/itemRoute');
+const entityRoute = require('./routes/entityRoute');
 
 const app = express();
 
@@ -29,6 +30,7 @@ const connectDB = async () =>{
 connectDB()
 
 app.use('/item', itemRoute)
+app.use('/entity',entityRoute)
 
 app.listen(port, () => {
     console.log(`Server is running on the port : ${port}`);

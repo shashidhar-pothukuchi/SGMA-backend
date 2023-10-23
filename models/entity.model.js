@@ -1,14 +1,10 @@
 const mongoose = require('mongoose');
 
-const schema = mongoose.Schema();
+const entitySchema = mongoose.Schema({
 
-const entitySchema = new Schema({
-    
-    name:{
-        type: String,
-        required: true,
-    },
-    image:{
-        type: Image
-    }
+    name:{ type: String, required: true },
+    imageURL:{ type: String,
+            }
 });
+
+module.exports = mongoose.model('Entity',entitySchema);
