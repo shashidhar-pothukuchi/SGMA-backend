@@ -5,9 +5,10 @@ const colors = require('colors')
 
 require('dotenv').config();
 
-//Routes
-const itemRoute = require('./routes/itemRoute');
+//Routes import
 const entityRoute = require('./routes/entityRoute');
+const itemRoute = require('./routes/itemRoute');
+const transactionRoute = require('./routes/transactionRoute');
 
 const app = express();
 
@@ -31,6 +32,7 @@ connectDB()
 
 app.use('/item', itemRoute)
 app.use('/entity',entityRoute)
+app.use('/transactions', transactionRoute)
 
 app.listen(port, () => {
     console.log(`Server is running on the port : ${port}`);
